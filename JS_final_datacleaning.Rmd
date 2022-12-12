@@ -1,0 +1,962 @@
+
+
+``` {r}
+library(dplyr)
+
+#load all the files
+data_2021 <- read.csv('2021_us.csv')
+data_2020 <- read.csv('2020_us.csv')
+data_2019 <- read.csv('2019_us.csv')
+data_2018 <- read.csv('2018_us.csv')
+data_2017 <- read.csv('2017_us.csv')
+data_2016 <- read.csv('2016_us.csv')
+data_2015 <- read.csv('2015_us.csv')
+data_2014 <- read.csv('2014_us.csv')
+data_2013 <- read.csv('2013_us.csv')
+data_2012 <- read.csv('2012_us.csv')
+data_2011 <- read.csv('2011_us.csv')
+data_2010 <- read.csv('2010_us.csv')
+data_2009 <- read.csv('2009_us.csv')
+data_2008 <- read.csv('2008_us.csv')
+data_2007 <- read.csv('2007_us.csv')
+data_2006 <- read.csv('2006_us.csv')
+data_2005 <- read.csv('2005_us.csv')
+data_2004 <- read.csv('2004_us.csv')
+data_2003 <- read.csv('2003_us.csv')
+data_2002 <- read.csv('2002_us.csv')
+data_2001 <- read.csv('2001_us.csv')
+data_2000 <- read.csv('2000_us.csv')
+data_1999 <- read.csv('1999_us.csv')
+data_1998 <- read.csv('1998_us.csv')
+data_1997 <- read.csv('1997_us.csv')
+data_1996 <- read.csv('1996_us.csv')
+data_1995 <- read.csv('1995_us.csv')
+data_1994 <- read.csv('1994_us.csv')
+data_1993 <- read.csv('1993_us.csv')
+data_1992 <- read.csv('1992_us.csv')
+data_1991 <- read.csv('1991_us.csv')
+data_1990 <- read.csv('1990_us.csv')
+data_1989 <- read.csv('1989_us.csv')
+data_1988 <- read.csv('1988_us.csv')
+data_1987 <- read.csv('1987_us.csv')
+```
+
+```{r}
+#strip data to columns of interest and rename
+data_2021_clean <- data_2021 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2020_clean <- data_2021 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2019_clean <- data_2019 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2018_clean <- data_2018 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2017_clean <- data_2017 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2016_clean <- data_2016 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2015_clean <- data_2015 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2014_clean <- data_2014 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2013_clean <- data_2013 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2012_clean <- data_2012 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2011_clean <- data_2011 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2010_clean <- data_2010 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2009_clean <- data_2009 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2008_clean <- data_2008 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2007_clean <- data_2007 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2006_clean <- data_2006 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2005_clean <- data_2005 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2004_clean <- data_2004 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2003_clean <- data_2003 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2002_clean <- data_2002 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2001_clean <- data_2001 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_2000_clean <- data_2000 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1999_clean <- data_1999 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1998_clean <- data_1998 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1997_clean <- data_1997 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1996_clean <- data_1996 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1995_clean <- data_1995 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1994_clean <- data_1994 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1993_clean <- data_1993 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1992_clean <- data_1992 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1991_clean <- data_1991 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1990_clean <- data_1990 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1989_clean <- data_1989 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1988_clean <- data_1988 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+data_1987_clean <- data_1987 |>
+  select(X1..YEAR, X4..FACILITY.NAME, X5..STREET.ADDRESS, X6..CITY, X7..COUNTY, X8..ST, X9..ZIP, X12..LATITUDE, X13..LONGITUDE, X15..PARENT.CO.NAME, X20..INDUSTRY.SECTOR, X34..CHEMICAL, X39..CLEAN.AIR.ACT.CHEMICAL, X40..CLASSIFICATION, X47..UNIT.OF.MEASURE, X103..6.2...TOTAL.TRANSFER)|>
+  rename(Year = X1..YEAR,
+         Facility_Name = X4..FACILITY.NAME,
+         Street_Address = X5..STREET.ADDRESS,
+         City = X6..CITY,
+         County = X7..COUNTY,
+         State = X8..ST,
+         Zip = X9..ZIP,
+         Latitude = X12..LATITUDE,
+         Longitude = X13..LONGITUDE,
+         Parent_Company_Name = X15..PARENT.CO.NAME,
+         Industry_Sector = X20..INDUSTRY.SECTOR,
+         Chemical = X34..CHEMICAL,
+         Air_Act_Status = X39..CLEAN.AIR.ACT.CHEMICAL,
+         Classification = X40..CLASSIFICATION,
+         Unit = X47..UNIT.OF.MEASURE,
+         Total_Transferred = X103..6.2...TOTAL.TRANSFER) |>
+  filter(State == 'CT')
+```
+
+``` {r}
+# get a dataset with just the locations of facilities
+# dataset with chemical information tied to the facility name with each year -> can join to get both in a map
+  
+data_1987_loc <- data_1987_clean[!duplicated(data_1987_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1988_loc <- data_1988_clean[!duplicated(data_1988_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1989_loc <- data_1989_clean[!duplicated(data_1989_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1990_loc <- data_1990_clean[!duplicated(data_1990_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1991_loc <- data_1991_clean[!duplicated(data_1991_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1992_loc <- data_1992_clean[!duplicated(data_1992_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1993_loc <- data_1993_clean[!duplicated(data_1993_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1994_loc <- data_1994_clean[!duplicated(data_1994_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1995_loc <- data_1995_clean[!duplicated(data_1995_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1996_loc <- data_1996_clean[!duplicated(data_1996_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1997_loc <- data_1997_clean[!duplicated(data_1997_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1998_loc <- data_1998_clean[!duplicated(data_1998_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_1999_loc <- data_1999_clean[!duplicated(data_1999_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2000_loc <- data_2000_clean[!duplicated(data_2000_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2001_loc <- data_2001_clean[!duplicated(data_2001_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2002_loc <- data_2002_clean[!duplicated(data_2002_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2003_loc <- data_2003_clean[!duplicated(data_2003_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2004_loc <- data_2004_clean[!duplicated(data_2004_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2005_loc <- data_2005_clean[!duplicated(data_2005_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2006_loc <- data_2006_clean[!duplicated(data_2006_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2007_loc <- data_2007_clean[!duplicated(data_2007_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2008_loc <- data_2008_clean[!duplicated(data_2008_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2009_loc <- data_2009_clean[!duplicated(data_2009_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2010_loc <- data_2010_clean[!duplicated(data_2010_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2011_loc <- data_2011_clean[!duplicated(data_2011_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2012_loc <- data_2012_clean[!duplicated(data_2012_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2013_loc <- data_2013_clean[!duplicated(data_2013_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2014_loc <- data_2014_clean[!duplicated(data_2014_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2015_loc <- data_2015_clean[!duplicated(data_2015_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2016_loc <- data_2016_clean[!duplicated(data_2016_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2017_loc <- data_2017_clean[!duplicated(data_2017_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2018_loc <- data_2018_clean[!duplicated(data_2018_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2019_loc <- data_2019_clean[!duplicated(data_2019_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2020_loc <- data_2020_clean[!duplicated(data_2020_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+data_2021_loc <- data_2021_clean[!duplicated(data_2021_clean$Street_Address),] |>
+  select(Year, Facility_Name, Street_Address, City, County, State, Zip, Latitude, Longitude)
+
+loc_in1 <- data_1988_loc[!duplicated(data_1987_clean$Street_Address), ]
+
+location_data <- rbind(data_1987_loc, loc_in1)
+location_data <- rbind(location_data, data_1989_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1990_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1991_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1992_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1993_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1994_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1995_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1996_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1997_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1998_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_1999_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2000_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2001_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2002_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2003_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2004_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2005_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2006_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2007_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2008_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2009_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2010_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2011_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2000_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2001_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2002_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2003_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2004_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2005_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2006_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2007_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2008_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2009_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2010_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2011_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2012_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2013_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2014_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2015_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2016_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2017_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2018_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2019_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2020_loc[!duplicated(location_data$Street_Address), ])
+location_data <- rbind(location_data, data_2021_loc[!duplicated(location_data$Street_Address), ])
+location_data <- location_data[!duplicated(location_data$Street_Address), ]
+location_data <- na.omit(location_data)
+save(location_data, file = 'TRI_location.rda')
+```
+
+``` {r}
+# create chemical dataset, convert amounts to same quantity
+data_1987_chem <- data_1987_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1988_chem <- data_1988_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1989_chem <- data_1989_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1990_chem <- data_1990_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1991_chem <- data_1991_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1992_chem <- data_1992_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1993_chem <- data_1993_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1994_chem <- data_1994_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1995_chem <- data_1995_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1996_chem <- data_1996_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1997_chem <- data_1997_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1998_chem <- data_1998_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_1999_chem <- data_1999_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2000_chem <- data_2000_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2001_chem <- data_2001_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2002_chem <- data_2002_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2003_chem <- data_2003_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2004_chem <- data_2004_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2005_chem <- data_2005_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2006_chem <- data_2006_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2007_chem <- data_2007_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2008_chem <- data_2008_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2009_chem <- data_2009_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2010_chem <- data_2010_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2011_chem <- data_2011_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2012_chem <- data_2012_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2013_chem <- data_2013_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2014_chem <- data_2014_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2015_chem <- data_2015_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2016_chem <- data_2016_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2017_chem <- data_2017_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2018_chem <- data_2018_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2019_chem <- data_2019_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2020_chem <- data_2020_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+data_2021_chem <- data_2021_clean |>
+  select(Year, Facility_Name, Industry_Sector, Chemical, Unit, Total_Transferred)
+
+chemical_data_all <- data_1987_chem |>
+  full_join(data_1988_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1989_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1990_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1991_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1992_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1993_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1994_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1995_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1996_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1997_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1998_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_1999_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2000_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2001_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2002_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2003_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2004_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2005_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2006_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2007_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2008_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2009_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2010_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2011_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2012_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2013_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2014_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2015_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2016_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2017_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2018_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2019_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2020_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  full_join(data_2021_chem, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred'))
+
+chem_grams <- chemical_data_all |>
+  filter(Unit == 'Grams')
+chem_pounds <- chemical_data_all |>
+  filter(Unit == 'Pounds') |>
+  mutate(Total_Transferred = Total_Transferred * 453.592) # conversion factor for pounds to grams
+
+chemical_data <- chem_grams |>
+  full_join(chem_pounds, by = c('Year', 'Facility_Name', 'Industry_Sector', 'Chemical', 'Unit', 'Total_Transferred')) |>
+  mutate(Total_Transferred = Total_Transferred / 1000) |> # convert all to kg 
+  select(Year, Facility_Name, Industry_Sector, Chemical, Total_Transferred)
+
+save(chemical_data, file = 'TRI_chemicals.rda')
+```
